@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_categories_array">
+        <item>@string/settings_cat_sport</item>
+        <item>@string/settings_cat_books</item>
+        <item>@string/settings_cat_football</item>
+        <item>@string/settings_cat_global</item>
+        <item>@string/settings_cat_lifeandstyle</item>
+        <item>@string/settings_cat_media</item>
+        <item>@string/settings_cat_news</item>
+        <item>@string/settings_cat_science</item>
+        <item>@string/settings_cat_stage</item>
+    </string-array>
+
+    <string-array name="settings_order_array">
+        <item>@string/settings_order_by_relevance</item>
+        <item>@string/settings_order_by_newest</item>
+        <item>@string/settings_order_by_oldest</item>
+    </string-array>
+</resources>
