@@ -1,7 +1,5 @@
 package com.example.andrei.newsappstage2;
 
-import android.widget.TextView;
-
 /**
  * Created by Andrei on 13.04.2018.
  * <p>

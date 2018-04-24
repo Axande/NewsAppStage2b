@@ -3,12 +3,9 @@ package com.example.andrei.newsappstage2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
-
-import android.content.SharedPreferences;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +25,6 @@ import java.util.ArrayList;
 public class NewsLoader extends AsyncTaskLoader<ArrayList<News>> {
 
     private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search";
-
 
     public NewsLoader(Context context) {
         super(context);
@@ -54,7 +50,6 @@ public class NewsLoader extends AsyncTaskLoader<ArrayList<News>> {
             try {
                 final JSONObject jsonObj = new JSONObject(jsonString); //Convert the string to Json object
                 final JSONArray rawNews = jsonObj.getJSONObject("response").getJSONArray("results"); //get the json node with results
-
                 JSONArray tempArray;
                 JSONObject tempObj;
 
@@ -75,7 +70,6 @@ public class NewsLoader extends AsyncTaskLoader<ArrayList<News>> {
                         tempObj = tempArray.getJSONObject(0);
                         oneEntry.setAuthor(tempObj.optString("webTitle"));
                     }
-
                     loadedNews.add(oneEntry);
                 }
             } catch (final JSONException e) {
@@ -120,12 +114,10 @@ public class NewsLoader extends AsyncTaskLoader<ArrayList<News>> {
         String containingWord = preferences.getString(context.getString(R.string.settings_find), "");
         String category = preferences.getString(context.getString(R.string.settings_category), "");
         String orderBy = preferences.getString(context.getString(R.string.settings_order), "");
-        String pageToUpdate = preferences.getString(context.getString(R.string.settings_page), "");
 
         // Append query parameter and its value. For example, the `format=geojson`
         uriBuilder.appendQueryParameter("q", containingWord);
         uriBuilder.appendQueryParameter("section", category);
-//        uriBuilder.appendQueryParameter("page", pageToUpdate);
         uriBuilder.appendQueryParameter("page-size", nrPages);
         uriBuilder.appendQueryParameter("api-key", "f410ec8e-d4be-419c-b77d-dfb3d818a0d7");
         uriBuilder.appendQueryParameter("show-tags", "contributor");

@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private int currentDisplay = 1; //which part of the app to display: 1 = help, 200 = list of items, 404 = error
 
     SharedPreferences.Editor editor;
-    NewsAdapter newsAdapter;
     public ArrayList<News> allNewsList = new ArrayList<>();
 
     private ConnectivityManager cm;         //object to manage connectivity
@@ -55,11 +54,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onClick(View view) {
                 if (currentDisplay != 200) updateScreen(200, "");
 
-
-                //clear all pages and load again from page 1
-                editor.putString(getString(R.string.settings_page), "1");
-                editor.apply();
-//                com.example.andrei.newsappstage2.MainActivity.pageToLoad = 1;
                 allNewsList.clear();
 
                 activeNetwork = cm.getActiveNetworkInfo();
@@ -101,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             startActivity(settingsIntent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -132,8 +125,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     private void refreshListOfItems() {
         if (allNewsList != null) {
-            if(newsAdapter == null)
-                newsAdapter = new NewsAdapter(this, allNewsList);
+            NewsAdapter newsAdapter = new NewsAdapter(this, allNewsList);
 
             ListView newsFeed = findViewById(R.id.news_feed);
             newsFeed.setAdapter(newsAdapter);
@@ -174,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             TextView tw = findViewById(R.id.error_text);
             tw.setText(message);
         }
-
         //open the right tab
         if (val == 404) layout_error.setVisibility(View.VISIBLE);
         else if (val == 200) layout_list.setVisibility(View.VISIBLE);
